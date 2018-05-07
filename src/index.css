@@ -2,8 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-	background:linear-gradient(#000,#888);
-}
+  background:linear-gradient(#000,#888);
+  background-attachment:fixed;
+ }
 
 .audio-container {
 	max-width:100%;
@@ -19,6 +20,16 @@ body {
 	text-shadow:3px 3px 30px lime;
 }
 
+@keyframes headingMarquee {
+	0%{
+		transform: translateX(300%);
+	}
+	
+	100% {
+		transform: translateX(-300%);
+	}
+}
+
 .music-marquee {
 	height:20px;
 	background:#000;
@@ -30,8 +41,169 @@ body {
 	border-bottom:lime inset 1px;
 }
 .music-marquee .headings {
+	animation-name:headingMarquee;
+	animation-duration:7s;
+	animation-fill-mode:forwards;
+	animation-iteration-count:infinite;
+	animation-timing-function:linear;
 	text-align:left;
 	display:inline-block;
 	font-family:arial,sans-serif;
 	text-transform:uppercase;
 }
+
+.mp3list-buttons {
+		margin-bottom:20px;
+		width:100%;
+}
+
+.mp3list-buttons button {
+	padding:10px;
+	color:#FFF;
+	border-radius:5px;
+	border:1px solid #77CCFF;
+	margin:0 5px;
+	text-transform:uppercase;
+	width:30%;
+	transition-property:background-color;
+	transition-duration:1s;
+}
+
+.mp3list-buttons button:hover {
+	background-color:#CFC;
+	color:#070;
+}
+
+.clicked-mp3-button {
+	background-color:#090;
+	color:#000;
+}
+
+
+.unclicked-mp3-button {
+	background-color:#39F;
+}
+
+.soundwave, .soundwave-hidden {
+	width:100%;
+	text-align:center;
+	visibility: visible;
+	background-image:url(https://loading.io/spinners/equalizer/lg.equalizer-bars-loader.gif);
+	background-repeat:no-repeat;
+	background-size:100% 167%;
+	height:200px;
+}
+
+.soundwave-hidden {
+	visibility: hidden;
+}
+
+.pause-button, .play-button , .mute-button {
+	width:32px;
+	height:32px;
+	margin:5px;
+	border-radius:3px;
+	border:1px solid #999;
+	color:#FFF;	
+	cursor:pointer;
+}
+
+.play-button {
+	background-color:#007700;
+}
+
+.pause-button {
+	background-color:#FF0000;
+}
+
+.mute-button {
+	background-color:gold;
+}
+
+
+/* The slider itself */
+.slider {
+margin:25px 0px;
+  -webkit-appearance: none;
+  /* Override default CSS styles */
+  appearance: none;
+  width: 100%;
+  /* Full-width */
+  height: 10px;
+  /* Specified height */
+  background: linear-gradient(to right, #FFF,#000);
+  /* Grey background */
+  outline: none;
+  /* Remove outline */
+  opacity: 0.7;
+  /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s;
+  /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1;
+  /* Fully shown on mouse-over */
+}
+
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(#0C0, #060);
+	border:1px solid #050;
+    cursor: pointer;
+    border-radius:50%;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #ff0;
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+	@keyframes headingMarquee {
+		0%{
+			transform: translateY(-150%);
+		}
+		
+		25% {
+			transform: translateY(20%);
+		}
+		
+		75% {
+			transform: translateY(20%);
+		}
+		
+		100% {
+			transform: translateY(150%);
+		}
+	}
+
+	.music-marquee .headings {
+		animation-name:headingMarquee;
+		animation-duration:4s;
+		text-align:center;
+		font-size:50%;
+	}
+
+	.mp3list-buttons button {
+		color:#DDD;
+		border:0;
+		border-bottom:1px solid #DDD;
+		width:100%;
+		float:none;
+		background:#000;
+		margin:0;
+		font-size:50%;
+	}
+	
+	
+}
+
