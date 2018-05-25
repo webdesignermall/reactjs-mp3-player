@@ -14,7 +14,8 @@ class AudioPlayer extends Component {
 		this.state = {
 			soundwaveCssClass:'soundwave-hidden',
 			volumeBeforeMute:.50,
-			speakerEntity:"&#128266;"
+			speakerEntity:"&#128266;",
+			showSoundWave:'yes'
 		}
 		this.pause = this.pause.bind(this);
 		this.play = this.play.bind(this);
