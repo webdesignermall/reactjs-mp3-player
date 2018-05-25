@@ -221,6 +221,22 @@ class MP3Player extends Component {
 		}));
 	}
 	
+	componentDidMount() {
+		var randomMP3Index = Math.floor(Math.random()*this.state.mp3Data.length);
+		console.log(randomMP3Index);
+		var mp3title = this.state.mp3Data[randomMP3Index].name;
+		mp3title = mp3title.replace('.mp3','').replaceAll('_',' ').toUpperCase();
+		console.log(mp3title);
+		this.setState((state)=>({
+			mp3artist:state.mp3Data[randomMP3Index].artist,
+			mp3genre:state.mp3Data[randomMP3Index].genre,
+			mp3name:state.mp3Data[randomMP3Index].name,
+			mp3title:mp3title,
+			audiopath:state.mp3path+state.mp3Data[randomMP3Index].name,
+		}));
+		console.log(this.state.mp3Data[randomMP3Index].artist);
+	}
+	
 	changeMP3(currentButtonId, genre, name, artist) {
 		var mp3title = name;
 		var mp3name = name;
