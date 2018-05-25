@@ -172,8 +172,16 @@ margin:25px 0px;
 }
 
 .genre-buttons a {
-	color:yellow;
-	padding:20px;
+	color:#FFF;
+	padding:5px;
+	font-size:10pt;
+	background:#555;
+	text-decoration:none;
+	margin:0 10px;
+	border-radius:5px;
+	width:90px;
+	display:inline-block;
+	border: #999 1px solid;
 }
 
 @media screen and (max-width:768px) {

@@ -54,6 +54,13 @@ class MP3Button extends Component {
 				)}
 				</span>
 			)}/>
+			<Route exact path='/genre/pop' render={()=>(
+				<span>
+				{this.props.genre==='Pop' && (
+					<button onClick={()=>this.props.changeMP3(this.state.currentButtonId,this.props.genre,this.props.mp3,this.props.artist)} id={this.props.mp3} className={this.state.buttonClass}>{this.state.buttonTitle}</button>
+				)}
+				</span>
+			)}/>
 			
 		</span>
 		)

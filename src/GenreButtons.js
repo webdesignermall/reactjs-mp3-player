@@ -5,9 +5,10 @@ class GenreButtons extends Component  {
 	render() {
 		return (
 			<aside className="genre-buttons">
-				<Link to="/">All</Link> | 
-				<Link to="/genre/rock">Rock</Link> | 
+				<Link to="/">All</Link>
+				<Link to="/genre/rock">Rock</Link>
 				<Link to="/genre/hiphop">Hip Hop</Link>
+				<Link to="/genre/pop">Pop</Link>
 			</aside>	
 		);
 	}
