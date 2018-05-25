@@ -7,6 +7,8 @@ import Marquee from './Marquee';
 import Soundwave from './Soundwave';
 import VolumeSlider from './VolumeSlider';
 import AudioPlayerButtons from './AudioPlayerButtons';
+import {BrowserRouter} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class AudioPlayer extends Component {
 	constructor(props) {
@@ -15,7 +17,6 @@ class AudioPlayer extends Component {
 			soundwaveCssClass:'soundwave-hidden',
 			volumeBeforeMute:.50,
 			speakerEntity:"&#128266;",
-			showSoundWave:'yes'
 		}
 		this.pause = this.pause.bind(this);
 		this.play = this.play.bind(this);
@@ -27,6 +28,7 @@ class AudioPlayer extends Component {
 	componentDidMount(){
 		this.refs.audio.volume=this.state.volumeBeforeMute;
 	}
+
 	
 	componentWillReceiveProps() {
 		this.refs.audio.pause();
@@ -107,8 +109,8 @@ class MP3Player extends Component {
 		super(props);
 		this.state = {
 			mp3path:'http://localhost/hwi/podcast music/mp3s/',
-			mp3name:'Stronger.mp3',
-			mp3artist:'Will Sid Smith',
+			mp3name:'',
+			mp3artist:'',
 			audiopath:'',
 			mp3autoplay:'autoPlay',
 			mp3genre:'Pop',
@@ -116,6 +118,8 @@ class MP3Player extends Component {
 			currentButtonId:0,
 			clickedButtonId:'',
 			mp3Data:[],
+			showSoundWave:'yes'
+
 		}
 	}
 	
@@ -218,6 +222,19 @@ class MP3Player extends Component {
 					genre:'Hip Hop'
 				}
 			]
+		}));		
+	}
+	
+	componentDidMount() {
+		var randMP3Index = Math.floor(Math.random() * this.state.mp3Data.length);
+		var mp3title = this.state.mp3Data[randMP3Index].name;
+		mp3title = mp3title.replace('.mp3','').replaceAll('_',' ').toUpperCase();
+		this.setState((state)=>({
+			mp3artist:state.mp3Data[randMP3Index].artist,
+			mp3name:state.mp3Data[randMP3Index].name,
+			mp3genre:state.mp3Data[randMP3Index].genre,
+			mp3title:mp3title,
+			audiopath:state.mp3path+state.mp3Data[randMP3Index].name,
 		}));
 	}
 	
@@ -238,25 +255,27 @@ class MP3Player extends Component {
 		
 	}
 	
+
 	render() {
 
 		return (
 			<div className="audio-container">
 				<h1>{this.props.title}</h1>
-				<Marquee mp3artist={this.state.mp3artist} mp3genre={this.state.mp3genre}>{this.state.mp3title}</Marquee>
+				<Marquee mp3artist={this.state.mp3artist} mp3genre={this.state.mp3genre}>{this.state.mp3title}</Marquee>	
 				<section className="mp3list-buttons">
 					{
 						this.state.mp3Data.map((mp3,index)=>
-						<MP3Button key={index} 
-						changeMP3={this.changeMP3}
-						clickedButtonId={this.state.mp3name}
-						mp3={mp3.name}
-						artist={mp3.artist}
-						genre={mp3.genre}
-						/>
+							<MP3Button key={index} 
+							changeMP3={this.changeMP3}
+							clickedButtonId={this.state.mp3name}
+							mp3={mp3.name}
+							artist={mp3.artist}
+							genre={mp3.genre}
+							/>
 						)
 					}
 				</section>
+				{}
 				<AudioPlayer soundwaveCssClass={this.state.soundwaveCssClass} childRef="audio" audiopath={this.state.audiopath} />
 			</div>
 		);
@@ -264,6 +283,6 @@ class MP3Player extends Component {
 }
 
 ReactDOM.render(
-  <MP3Player title="MP3 Jukebox..."/>,
+  <BrowserRouter><MP3Player title="MP3 Jukebox..."/></BrowserRouter>,
   document.getElementById('root')
 );
