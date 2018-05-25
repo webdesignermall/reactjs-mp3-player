@@ -7,6 +7,8 @@ import Marquee from './Marquee';
 import Soundwave from './Soundwave';
 import VolumeSlider from './VolumeSlider';
 import AudioPlayerButtons from './AudioPlayerButtons';
+import GenreButtons from './GenreButtons';
+import { BrowserRouter } from 'react-router-dom';
 
 class AudioPlayer extends Component {
 	constructor(props) {
@@ -260,6 +262,7 @@ class MP3Player extends Component {
 			<div className="audio-container">
 				<h1>{this.props.title}</h1>
 				<Marquee mp3artist={this.state.mp3artist} mp3genre={this.state.mp3genre}>{this.state.mp3title}</Marquee>
+				<GenreButtons />
 				<section className="mp3list-buttons">
 					{
 						this.state.mp3Data.map((mp3,index)=>
@@ -280,6 +283,6 @@ class MP3Player extends Component {
 }
 
 ReactDOM.render(
-  <MP3Player title="MP3 Jukebox..."/>,
+  <BrowserRouter><MP3Player title="MP3 Jukebox..."/></BrowserRouter>,
   document.getElementById('root')
 );

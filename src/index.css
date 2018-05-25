@@ -167,6 +167,15 @@ margin:25px 0px;
     cursor: pointer;
 }
 
+.genre-buttons{
+	margin:20px;
+}
+
+.genre-buttons a {
+	color:yellow;
+	padding:20px;
+}
+
 @media screen and (max-width:768px) {
 	@keyframes headingMarquee {
 		0%{
